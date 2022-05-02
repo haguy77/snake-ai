@@ -54,7 +54,7 @@ class Agent:
             dir_l,
             dir_r,
             dir_u,
-            dir_d
+            dir_d,
 
             # Food location
             game.food.x < game.head.x,  # food left
