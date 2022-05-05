@@ -32,7 +32,7 @@ BLUE2 = (0, 100, 255)
 BLACK = (0, 0, 0)
 
 BLOCK_SIZE = 20
-SPEED = 20
+SPEED = 40
 
 
 class SnakeGameAI:
@@ -136,10 +136,10 @@ class SnakeGameAI:
             new_dir = clock_wise[idx]  # no change
         elif np.array_equal(action, [0, 1, 0]):
             next_idx = (idx + 1) % 4
-            new_dir = clock_wise[idx]  # right turn r -> d -> l -> u -> r
+            new_dir = clock_wise[next_idx]  # right turn r -> d -> l -> u -> r
         else:  # [0, 0, 1]
             next_idx = (idx - 1) % 4
-            new_dir = clock_wise[idx]  # right turn r -> u -> l -> d -> r
+            new_dir = clock_wise[next_idx]  # right turn r -> u -> l -> d -> r
 
         self.direction = new_dir
 

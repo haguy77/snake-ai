@@ -16,10 +16,10 @@ class Agent:
     def __init__(self):
         self.n_games = 0
         self.epsilon = 0  # randomness
-        self.gama = 0.9  # discount rate
+        self.gamma = 0.9  # discount rate
         self.memory = deque(maxlen=MAX_MEMORY)  # popleft()
         self.model = Linear_QNet(11, 256, 3)
-        self.trainer = QTrainer(self.model, lr=LR, gamma=self.gama)
+        self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
 
     def get_state(self, game):
         head = game.snake[0]
@@ -36,7 +36,7 @@ class Agent:
         state = [
             # Danger straight
             (dir_r and game.is_collision(point_r)) or
-            (dir_d and game.is_collision(point_l)) or
+            (dir_l and game.is_collision(point_l)) or
             (dir_u and game.is_collision(point_u)) or
             (dir_d and game.is_collision(point_d)),
 
@@ -60,7 +60,7 @@ class Agent:
 
             # Food location
             game.food.x < game.head.x,  # food left
-            game.food.x > game.head.x,  # foog right
+            game.food.x > game.head.x,  # food right
             game.food.y < game.head.y,  # food up
             game.food.y > game.head.y  # food down
         ]
